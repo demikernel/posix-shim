@@ -23,6 +23,7 @@ struct demi_event
 extern void epoll_table_init(void);
 extern int epoll_table_alloc(void);
 extern struct demi_event *epoll_get_event(int epfd, int i);
+extern int __do_demi_epoll_ctl_drop(int epfd, int fd);
 extern int __epoll_reent_guard;
 
 #endif // _EPOLL_H_

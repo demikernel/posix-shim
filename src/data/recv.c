@@ -15,6 +15,8 @@
 
 ssize_t __demi_read(int sockfd, void *buf, size_t count)
 {
+    int epfd = -1;
+
     // Check if this is a reentrant call.
     // If that is not the case, then fail to let the Linux kernel handle it.
     if (__epoll_reent_guard)
@@ -32,7 +34,7 @@ ssize_t __demi_read(int sockfd, void *buf, size_t count)
     }
 
     // Check if socket descriptor is registered on an epoll instance.
-    if (queue_man_query_fd_pollable(sockfd))
+    if (epfd = queue_man_query_fd_pollable(sockfd))
     {
         TRACE("sockfd=%d, buf=%p, count=%zu", sockfd, buf, count);
         struct demi_event *ev = NULL;
@@ -52,6 +54,10 @@ ssize_t __demi_read(int sockfd, void *buf, size_t count)
             {
                 TRACE("read zero bytes");
                 demi_sgafree(&ev->qr.qr_value.sga);
+
+                // Cancel all pending fds.
+                __do_demi_epoll_ctl_drop(epfd, sockfd);
+
                 return (0);
             }
 

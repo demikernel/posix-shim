@@ -117,6 +117,28 @@ static int __do_demi_epoll_ctl_mod(int epfd, int fd, struct epoll_event *event)
     return (-1);
 }
 
+int __do_demi_epoll_ctl_drop(int epfd, int fd)
+{
+    int ret = -1;
+
+    TRACE("epfd=%d, fd=%d", epfd, fd);
+
+    // Look for file descriptor
+    for (int i = 0; i < MAX_EVENTS; i++)
+    {
+        struct demi_event *ev = epoll_get_event(epfd, i);
+
+        // Found.
+        if ((ev->used) && (ev->sockqd == fd))
+        {
+            TRACE("demi_event: { sockqd: %d, qt: %d }\n", ev->sockqd, ev->qt);
+        }
+    }
+
+    // Entry not found.
+    return (ret);
+}
+
 static int __do_demi_epoll_ctl_del(int epfd, int fd)
 {
     int ret = -1;
