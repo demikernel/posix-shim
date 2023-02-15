@@ -55,9 +55,6 @@ ssize_t __demi_read(int sockfd, void *buf, size_t count)
                 TRACE("read zero bytes");
                 demi_sgafree(&ev->qr.qr_value.sga);
 
-                // Cancel all pending fds.
-                __do_demi_epoll_ctl_drop(epfd, sockfd);
-
                 return (0);
             }
 
