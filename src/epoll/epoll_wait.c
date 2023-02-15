@@ -96,7 +96,7 @@ int __demi_epoll_wait(int epfd, struct epoll_event *events, int maxevents, int t
             default: {
                 // TODO: implement.
                 TRACE("sockqd=%d qt=%d", ev->sockqd, qt );
-                UNIMPLEMETED("signal that Demikernel operation failedd");
+                UNIMPLEMETED("signal that Demikernel operation failed");
             }
             break;
             }

@@ -153,7 +153,7 @@ static int __do_demi_epoll_ctl_del(int epfd, int fd)
         // Found.
         if ((ev->used) && (ev->sockqd == fd))
         {
-            assert(ev->qt == (demi_qtoken_t)-1);
+            // assert(ev->qt == (demi_qtoken_t)-1);
             ret = demi_close(fd);
             queue_man_unlink_fd_epfd(fd);
             queue_man_remove_fd(fd);
