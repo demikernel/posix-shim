@@ -48,6 +48,7 @@ int __demi_epoll_wait(int epfd, struct epoll_event *events, int maxevents, int t
             if (ret == ETIMEDOUT)
                 continue;
 
+            demi_qtoken_t qt = ev->qt;
             ev->qt = (demi_qtoken_t)-1;
 
             if (ret != 0)
@@ -94,7 +95,8 @@ int __demi_epoll_wait(int epfd, struct epoll_event *events, int maxevents, int t
 
             default: {
                 // TODO: implement.
-                UNIMPLEMETED("signal that Demikernel operation failed");
+                TRACE("sockqd=%d qt=%d", ev->sockqd, qt );
+                UNIMPLEMETED("signal that Demikernel operation failedd");
             }
             break;
             }
