@@ -52,6 +52,10 @@ int __demi_setsockopt(int sockfd, int level, int optname, const void *optval, so
         // Ignore.
         INFO("setting %s", "TCP_KEEPIDLE");
     }
+    else if (level == IPPROTO_TCP && optname == TCP_KEEPINTVL){
+        // Ignore.
+        INFO("setting %s", "TCP_KEEPINTLVL");
+    }
     else if (level == IPPROTO_TCP && optname == TCP_ULP)
     {
         // Ignore.
