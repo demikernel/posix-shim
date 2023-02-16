@@ -44,6 +44,7 @@ int __demi_setsockopt(int sockfd, int level, int optname, const void *optval, so
     else
     {
         // Option not supported.
+        ERROR("option not supported");
         errno = ENOTSUP;
         return -1;
     }
