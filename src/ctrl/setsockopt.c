@@ -42,6 +42,16 @@ int __demi_setsockopt(int sockfd, int level, int optname, const void *optval, so
         // Ignore.
         INFO("setting %s", "SO_REUSEADDR");
     }
+    else if (level == IPPROTO_TCP && optname == TCP_NODELAY)
+    {
+        // Ignore.
+        INFO("setting %s", "TCP_NODELAY");
+    }
+    else if (level == IPPROTO_TCP && optname == TCP_KEEPIDLE)
+    {
+        // Ignore.
+        INFO("setting %s", "TCP_KEEPIDLE");
+    }
     else if (level == IPPROTO_TCP && optname == TCP_ULP)
     {
         // Ignore.
